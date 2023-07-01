@@ -1,0 +1,92 @@
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="{{ url_for('static', filename='styles.css') }}"
+    />
+    <link rel="stylesheet" href="/static/css/styles.css">
+    <title>ColorSpectrumAnalyzer</title>
+    <style>
+      /* CSS styles for page and div elements */
+      body {
+        background-color: #f7f7f7;
+        font-family: Arial, sans-serif;
+      }
+
+      .container {
+        background-color: #fff;
+        border-radius: 10px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        padding: 20px;
+        margin: 20px auto;
+        max-width: 800px;
+      }
+
+      .title {
+        color: #333;
+        text-align: center;
+        margin-bottom: 20px;
+      }
+
+      .block {
+        margin-bottom: 20px;
+      }
+
+      .image-container {
+        text-align: center;
+        margin-bottom: 20px;
+      }
+
+      .data-table {
+        width: 100%;
+        border-collapse: collapse;
+      }
+
+      .data-table th {
+        background-color: #f2f2f2;
+        text-align: left;
+        padding: 10px;
+      }
+
+      .data-table td {
+        padding: 10px;
+        border: 1px solid #ccc;
+        width: 50px; /* Adjust the width as needed */
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h2 class="title">Uploaded Image</h2>
+      <div class="block">
+        <div class="image-container">
+          <img
+            src="data:image/jpeg;base64,{{ image_url }}"
+            alt="test image"
+          />
+        </div>
+        <table class="data-table">
+          <thead>
+            <tr>
+              <th>Color</th>
+              <th>Color Code</th>
+              <th>Rank</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for color_code in colors %}
+            <tr>
+              <td style="background-color: {{ color_code }};"></td>
+              <td>{{ color_code }}</td>
+              <td>{{ loop.index }}</td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </body>
+</html>
